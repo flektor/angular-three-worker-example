@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-three-worker": {
+    "angular-three-worker-example": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,11 +17,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-three-worker",
+            "outputPath": "dist/angular-three-worker-example",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "webWorkerTsConfig": "tsconfig.worker.json",
             "aot": true,
             "assets": [
               "src/favicon.ico",
@@ -66,18 +67,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-three-worker:build"
+            "browserTarget": "angular-three-worker-example:build",
+            "aot": true
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-three-worker:build:production"
+              "browserTarget": "angular-three-worker-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-three-worker:build"
+            "browserTarget": "angular-three-worker-example:build"
           }
         },
         "test": {
@@ -103,7 +105,9 @@
             "tsConfig": [
               "tsconfig.app.json",
               "tsconfig.spec.json",
+              "tsconfig.worker.json",
               "e2e/tsconfig.json"
+              
             ],
             "exclude": [
               "**/node_modules/**"
@@ -114,15 +118,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-three-worker:serve"
+            "devServerTarget": "angular-three-worker-example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-three-worker:serve:production"
+              "devServerTarget": "angular-three-worker-example:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "ngx-three-worker"
+  "defaultProject": "angular-three-worker-example"
 }

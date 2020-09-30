@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './app.component'; 
+import { NgxCanvasWorkerModule } from 'src/canvas-worker/canvas-worker.module';
 
-@NgModule({
+@NgModule({ 
   declarations: [
-    AppComponent
+    AppComponent,  
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgxCanvasWorkerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'ngx-three-worker';
+  title = 'angular-three-worker-example';
+
+ 
+  
 }

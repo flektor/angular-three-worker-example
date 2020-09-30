@@ -1,6 +1,6 @@
 {
-  "name": "ngx-three-worker",
-  "version": "0.0.0",
+  "name": "angular-three-worker-example",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
