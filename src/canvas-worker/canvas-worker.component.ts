@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { RendererService, RendererWorkerParams } from 'src/service/renderer.service';
+import { EngineService, EngineWorkerParams } from 'src/service/engine.service';
 
 @Component({
   selector: 'ngx-canvas-worker',
@@ -13,24 +13,25 @@ export class CanvasWorkerComponent implements AfterViewInit {
 
   @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
 
-  constructor(private renderer: RendererService) {
+  constructor(private engine: EngineService) {
   }
 
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
     const offscreen = this.canvas.nativeElement.transferControlToOffscreen();
 
-    const params: RendererWorkerParams = {
+    const params: EngineWorkerParams = {
       canvas: offscreen,
       aspect: window.innerWidth / window.innerHeight
-
     }
-    this.renderer.initRenderer(params, offscreen);
+
+    await this.engine.init(params, offscreen);
+    this.render();
 
   }
 
-  async render() {
-    const result = await this.renderer.render();
+  async render(): Promise<void> {
+    return this.engine.render();
   }
 
 
