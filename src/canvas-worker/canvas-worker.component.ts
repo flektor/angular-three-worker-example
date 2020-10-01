@@ -11,32 +11,23 @@ export class CanvasWorkerComponent implements AfterViewInit {
 
   @Input() width: number;
   @Input() height: number;
-
   @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
 
-  @HostListener('window:resize', ['$event'])
-
-  onResize(event) {
+  @HostListener('window:resize', ['$event']) onResize(event) { 
     this.engine.setCameraPositionFromSize(event.target.innerWidth, event.target.innerHeight);
   }
 
-
-  constructor(private engine: EngineService) {
-  }
-
+  constructor(private engine: EngineService) { }
 
   async ngAfterViewInit() {
     const offscreen = this.canvas.nativeElement.transferControlToOffscreen();
 
-
     await this.engine.init(offscreen);
     this.render();
-
   }
 
   async render(): Promise<void> {
     return this.engine.render();
   }
-
 
 }
