@@ -1,18 +1,20 @@
 
 import { expose } from 'comlink';
 import { EngineWorkerParams } from 'src/service/engine.service';
-import { AmbientLight, BoxGeometry, DirectionalLight, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+import { AmbientLight, BoxGeometry, DirectionalLight, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer, WebGLRendererParameters } from 'three';
 
 export class Engine {
 
   renderer: WebGLRenderer;
   scene: Scene;
-  camera: PerspectiveCamera;
-  canvas: OffscreenCanvas;
+  camera: PerspectiveCamera; 
+  webGLRendererParams: WebGLRendererParameters
 
   init(canvas: OffscreenCanvas) {
-    this.canvas = canvas;
-    this.renderer = new WebGLRenderer({ canvas: canvas, });
+    if (this.renderer) return;
+
+    this.webGLRendererParams = { canvas: canvas, antialias: true }
+    this.renderer = new WebGLRenderer(this.webGLRendererParams);
     this.scene = new Scene();
     this.camera = new PerspectiveCamera(75, this.getAspect(), 0.1, 1000);
     const geometry = new BoxGeometry();
@@ -32,14 +34,14 @@ export class Engine {
   }
 
   getAspect(): number {
-    return this.canvas.width / this.canvas.height;
+    return this.webGLRendererParams.canvas.width / this.webGLRendererParams.canvas.height;
   }
 
   setCameraPositionFromSize(width: number, height: number) {
 
-    this.canvas.width = width;
-    this.canvas.height = height;
-    this.renderer = new WebGLRenderer({ canvas: this.canvas });
+    this.webGLRendererParams.canvas.width = width;
+    this.webGLRendererParams.canvas.height = height;
+    this.renderer = new WebGLRenderer(this.webGLRendererParams);
     this.renderer.setClearColor(0xffffff);
 
     const aspect = this.getAspect();
