@@ -1,3 +1,4 @@
+import { HostListener } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { EngineService, EngineWorkerParams } from 'src/service/engine.service';
 
@@ -13,6 +14,13 @@ export class CanvasWorkerComponent implements AfterViewInit {
 
   @ViewChild('canvas') canvas: ElementRef<HTMLCanvasElement>;
 
+  @HostListener('window:resize', ['$event'])
+
+  onResize(event) {
+    this.engine.setCameraPositionFromSize(event.target.innerWidth, event.target.innerHeight);
+  }
+
+
   constructor(private engine: EngineService) {
   }
 
@@ -20,12 +28,8 @@ export class CanvasWorkerComponent implements AfterViewInit {
   async ngAfterViewInit() {
     const offscreen = this.canvas.nativeElement.transferControlToOffscreen();
 
-    const params: EngineWorkerParams = {
-      canvas: offscreen,
-      aspect: window.innerWidth / window.innerHeight
-    }
 
-    await this.engine.init(params, offscreen);
+    await this.engine.init(offscreen);
     this.render();
 
   }
