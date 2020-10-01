@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html', 
+  template: '<ngx-canvas-worker width="{{width}}" height="{{height}}"></ngx-canvas-worker>', 
 })
 export class AppComponent {
   title = 'angular-three-worker-example';
