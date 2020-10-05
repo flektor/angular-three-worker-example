@@ -1,6 +1,5 @@
 
-import { expose } from 'comlink';
-import { EngineWorkerParams } from 'src/service/engine.service';
+import { expose } from 'comlink'; 
 import { AmbientLight, BoxGeometry, DirectionalLight, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, WebGLRenderer, WebGLRendererParameters } from 'three';
 
 export class Engine {

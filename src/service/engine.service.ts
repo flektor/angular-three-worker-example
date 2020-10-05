@@ -11,7 +11,7 @@ export interface EngineWorkerParams {
 async function createEngineWorker() {
 
   const workerProxy = wrap<typeof import('../worker/engine.worker').Engine>(
-    new Worker('../worker/engine.worker', { type: 'module' })
+    new Worker('../worker/engine.worker', { type: 'module' ,name:'canvas.worker.js'})
   );
 
   return await new workerProxy();
