@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Remote, wrap, transfer } from 'comlink';
+import { EventProps } from 'src/canvas-worker/canvas-worker.component';
 import { Engine } from 'src/worker/engine.worker';
 
 
@@ -11,7 +12,7 @@ export interface EngineWorkerParams {
 async function createEngineWorker() {
 
   const workerProxy = wrap<typeof import('../worker/engine.worker').Engine>(
-    new Worker('../worker/engine.worker', { type: 'module' ,name:'canvas.worker.js'})
+    new Worker('../worker/engine.worker', { type: 'module', name: 'canvas.worker.js' })
   );
 
   return await new workerProxy();
@@ -38,4 +39,18 @@ export class EngineService {
   async setCameraPositionFromSize(width: number, height: number): Promise<void> {
     this.engine.setCameraPositionFromSize(width, height);
   }
+
+  async initOrbitControls() {
+    this.engine.initOrbitControls();
+  }
+
+  async dispatchControlsEvent(event: EventProps) {
+    this.engine.dispatchControlsEvent(event);
+  }
+
+  
+  async dispatchControlsParentEvent(event: EventProps) {
+    this.engine.dispatchControlsParentEvent(event);
+  }
+
 }

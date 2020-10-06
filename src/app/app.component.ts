@@ -20,13 +20,18 @@ export class AppComponent {
   }
 
   async init() {
-    this.workerService = new SharedBufferWorkerService();
 
-    this.buffer = new SharedArrayBuffer(6); 
+    
 
-    await this.workerService.initWorker(this.buffer);
 
-    this.update();
+
+    // this.workerService = new SharedBufferWorkerService();
+
+    // this.buffer = new SharedArrayBuffer(6); 
+
+    // await this.workerService.initWorker(this.buffer);
+
+    // this.update();
   }
 
   update() {
