@@ -1,6 +1,6 @@
 import { HostListener } from '@angular/core';
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { EngineService } from 'src/service/engine.service';
+import { EngineService } from 'src/services/engine.service';
 
 @Component({
   selector: 'ngx-canvas-worker',
@@ -17,7 +17,9 @@ export class CanvasWorkerComponent implements AfterViewInit {
     this.engine.setCameraPositionFromSize(event.target.innerWidth, event.target.innerHeight);
   }
 
+
   constructor(private engine: EngineService) { }
+
 
   async ngAfterViewInit() {
     const offscreen = this.canvas.nativeElement.transferControlToOffscreen();
@@ -25,22 +27,20 @@ export class CanvasWorkerComponent implements AfterViewInit {
     await this.engine.init(offscreen);
 
 
-  
-
     this.engine.initOrbitControls();
 
     this.addEventListener('pointermove', true);
     this.addEventListener('pointerup', true);
-    
 
 
-    for (let type of ['keydown', 'contextmenu', 'pointerdown', 'wheel', 'tuchstart', 'touchend', 'touchmove']) {
+    for (let type of ['keydown', 'contextmenu', 'pointerdown', 'wheel', 'touchstart', 'touchend', 'touchmove']) {
       this.addEventListener(type);
     }
 
     this.render();
 
   }
+
 
   private addEventListener(type: string, parent: boolean = false) {
     document.addEventListener(type, event => {

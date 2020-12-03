@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/worker",
+    "outDir": "./out-tsc/workers",
     "lib": [
       "es2018",
       "dom",
