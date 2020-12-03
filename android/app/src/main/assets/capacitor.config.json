@@ -1,0 +1,17 @@
+{
+  "appId": "com.flektor.angularthreeworkerexample",
+  "appName": "angularThreeWorkerExample",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist/angular-three-worker-example",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "server": {
+    "url": "192.168.1.8:8100",
+    "cleartext": true
+  }
+}

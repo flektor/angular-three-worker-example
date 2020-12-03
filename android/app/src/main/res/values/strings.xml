@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">angularThreeWorkerExample</string>
+    <string name="title_activity_main">angularThreeWorkerExample</string>
+    <string name="package_name">com.flektor.angularthreeworkerexample</string>
+    <string name="custom_url_scheme">com.flektor.angularthreeworkerexample</string>
+</resources>
